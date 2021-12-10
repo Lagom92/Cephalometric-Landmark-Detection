@@ -25,7 +25,7 @@ class CoarseDataset(Dataset):
     
     def __getitem__(self, index):
         img_path = self.image_lst[index]
-        img_title = img_path.split(f"{self.mode}/")[-1]
+        img_title = img_path.split('/')[-1]
         title = ''.join(img_title.split('.jpeg')[0])
         json_path = f"{self.img_dir}{title}.json"
         landmark = json2lst(json_path)
