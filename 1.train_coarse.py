@@ -14,8 +14,8 @@ from models.resnet50_dilated import ResNet_dilated as coarse_model
 
 
 # Dataset
-train_val_dataset = CoarseDataset(train_img_path)
-test_dataset = CoarseDataset(test_img_path)
+train_val_dataset = CoarseDataset(train_img_path, flag=False)
+test_dataset = CoarseDataset(test_img_path, flag=False)
 
 len_val_set = int(0.1 * len(train_val_dataset))
 len_train_set = len(train_val_dataset) - len_val_set

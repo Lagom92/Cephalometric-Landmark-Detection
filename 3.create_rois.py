@@ -33,7 +33,7 @@ print("Make rois dir")
 print("Start create ROIs")
 roi_cnt, error_cnt = 0, 0      # Success and error rois counts
 with torch.no_grad():
-    train_val_dataset = CoarseDataset(train_img_path)
+    train_val_dataset = CoarseDataset(train_img_path, flag=True)
     for idx, val in enumerate(tqdm(train_val_dataset)):
         resized_img_, resized_labels, [org_img, org_labels] = val
         title = org_labels[0].split('.')[0]

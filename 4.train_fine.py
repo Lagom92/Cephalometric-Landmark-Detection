@@ -61,12 +61,9 @@ for num in tqdm(landmark_num):
     lr_scheduler = GradualWarmupScheduler(optimizer, multiplier=10, total_epoch=5, after_scheduler=cosine_scheduler)
     
     early_stopping = EarlyStopping(patience=20, path=f'{fine_weight_path}{num}_model.pt', verbose=False)
-    
-    optimizer.zero_grad()
-    
+        
     save_point = 0
     min_loss = float('inf')
-
     for epoch in range(epochs2):
         start_time = time.time()
         train_loss = 0.0

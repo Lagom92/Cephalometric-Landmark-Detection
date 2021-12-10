@@ -42,9 +42,8 @@ for idx in tqdm(range(n)):
     pred_landmarks = list(map(int, pred_landmarks))
     org_landmarks = list(map(int, org_landmarks))
 
-    dcm_path = test_img_path + img_lst[idx][:-4] +'dcm' 
-    row, col = get_pixelspacing(dcm_path)
-    distance = cal_distance(org_landmarks, pred_landmarks, row, col)
+    # Calculate distance
+    distance = cal_distance(org_landmarks, pred_landmarks)
     for m in range(0, len(distance)):
         num = str(m+1)
         val = round(distance[m], 4)

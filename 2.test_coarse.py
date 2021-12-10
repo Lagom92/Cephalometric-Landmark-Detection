@@ -10,7 +10,7 @@ from utils.dataset import CoarseDataset
 from models.resnet50_dilated import ResNet_dilated as coarse_model
 
 
-test_dataset = CoarseDataset(test_img_path)
+test_dataset = CoarseDataset(test_img_path, flag=True)
 print(f"len test: {len(test_dataset)}")
 
 # Make dir
@@ -76,9 +76,7 @@ with torch.no_grad():
         write_coor(org_csv_path, data, 'a')
 
         # Measure distance
-        dcm_path = test_img_path + title +'.dcm'        
-        row, col = get_pixelspacing(dcm_path)
-        distance = cal_distance(org_labels, pred_labels, row, col)
+        distance = cal_distance(org_labels, pred_labels)
         for m in range(0, len(distance)):
             num = str(m+1)
             val = round(distance[m], 4)

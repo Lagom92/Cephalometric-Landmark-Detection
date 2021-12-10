@@ -1,10 +1,8 @@
-import torch
-import numpy as np
 import csv
 import math
-import pydicom
-import torch
 import json
+import numpy as np
+import torch
 from torch.optim.lr_scheduler import _LRScheduler
 
 
@@ -17,16 +15,11 @@ def random_seed(seed=0):
     np.random.seed(random_seed)
     return True
 
-def get_pixelspacing(dcm_path):
-    dcm_data = pydicom.dcmread(dcm_path)
-    row, col = dcm_data.get('PixelSpacing', 'None')
-    return row, col
-
-def cal_distance(org_label, pred_label, row, col):
+def cal_distance(org_label, pred_label):
     res = []
     for k in range(0, len(org_label), 2):
-        d1 = (org_label[k] - pred_label[k]) * row
-        d2 = (org_label[k+1] - pred_label[k+1]) * col
+        d1 = org_label[k] - pred_label[k]
+        d2 = org_label[k+1] - pred_label[k+1]
         d = math.sqrt(d1**2 + d2**2)
         res.append(d)
     return res

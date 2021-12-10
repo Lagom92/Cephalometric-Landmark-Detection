@@ -1,6 +1,5 @@
 import os
 import cv2
-import numpy as np
 import pandas as pd
 from glob import glob
 from torch.utils.data import Dataset
@@ -10,13 +9,16 @@ from albumentations.pytorch.transforms import ToTensor
 from config import *
 from func import json2lst
 
-
+'''
+path: input image 폴더
+flag: True(original 데이터 출력 O) / False(original 데이터 출력 X)
+'''
 class CoarseDataset(Dataset):
-    def __init__(self, path):
+    def __init__(self, path, flag=False):
         self.img_dir = path
         self.image_lst = glob(self.img_dir + '*.jpeg')
         self.img_size = img_size
-        self.mode = path.split('/')[-2]
+        self.mode = flag
                 
     def __len__(self):
         return len(self.image_lst)
@@ -46,10 +48,10 @@ class CoarseDataset(Dataset):
                 res.append(int(landmark[idx]/h_ratio))
                 res.append(int(landmark[idx+1]/w_ratio))
 
-        if self.mode == 'train':
-            return title, data['image'], res
-        else:
+        if self.mode:
             return title, data['image'], res, [img, landmark]
+        else:
+            return title, data['image'], res
 
 
 class FineDataset(Dataset):
