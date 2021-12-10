@@ -7,7 +7,7 @@ import albumentations as A
 from albumentations.pytorch.transforms import ToTensor
 
 from config import *
-from func import json2lst
+from utils.func import json2lst
 
 '''
 path: input image 폴더
