@@ -41,10 +41,10 @@ workers = 4
 T_max = 50
 
 # 1차 네트워크
-epochs = 100
-learning_rate = 1e-7
+epochs = 20
+learning_rate = 1e-4
 
 # 2차 네트워크
-epochs2 = 10
-learning_rate2 = 1e-6
+epochs2 = 5
+learning_rate2 = 1e-4
 weight_decay2 = 1e-5

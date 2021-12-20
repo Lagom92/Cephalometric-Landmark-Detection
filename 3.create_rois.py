@@ -35,9 +35,10 @@ roi_cnt, error_cnt = 0, 0      # Success and error rois counts
 with torch.no_grad():
     train_val_dataset = CoarseDataset(train_img_path, flag=True)
     for idx, val in enumerate(tqdm(train_val_dataset)):
-        resized_img_, resized_labels, [org_img, org_labels] = val
-        title = org_labels[0].split('.')[0]
-        org_labels = org_labels[1:]
+        title, resized_img_, resized_labels, [org_img, org_labels] = val
+        #resized_img_, resized_labels, [org_img, org_labels] = val
+        #title = org_labels[0].split('.')[0]
+        #org_labels = org_labels[1:]
         resized_img = resized_img_.unsqueeze(0).unsqueeze(0).to(device)
 
         # infer

@@ -70,7 +70,7 @@ for idx in tqdm(range(n)):
 
 # Show results
 print(f"\ntest dataset counts: {len(img_lst)}")
-print("Average distance by class (mm)")
+print("Average distance by class (pixel)")
 n = len(table)
 total_avg = 0
 for idx, val in table.items():

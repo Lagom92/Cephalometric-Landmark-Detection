@@ -7,7 +7,7 @@ import albumentations as A
 from albumentations.pytorch.transforms import ToTensor
 
 from config import *
-from utils.func import json2lst
+from utils. func import json2lst
 
 '''
 path: input image 폴더
@@ -16,6 +16,7 @@ flag: True(original 데이터 출력 O) / False(original 데이터 출력 X)
 class CoarseDataset(Dataset):
     def __init__(self, path, flag=False):
         self.img_dir = path
+        print(path)
         self.image_lst = glob(self.img_dir + '*.jpeg')
         self.img_size = img_size
         self.mode = flag
