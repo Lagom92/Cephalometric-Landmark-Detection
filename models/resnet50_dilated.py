@@ -8,17 +8,17 @@ class Bottleneck_coarse(nn.Module):
     def __init__(self, in_planes, planes, stride=1, dilation=1):
         super(Bottleneck_coarse, self).__init__()
         self.conv1 = nn.Conv2d(in_planes, planes, kernel_size=1, bias=False)
-        self.bn1 = nn.BatchNorm2d(planes, track_running_stats=False)
+        self.bn1 = nn.BatchNorm2d(planes, track_running_stats=True)
         self.conv2 = nn.Conv2d(planes, planes, kernel_size=3, stride=stride, padding=dilation, dilation=dilation, bias=False)
-        self.bn2 = nn.BatchNorm2d(planes, track_running_stats=False)
+        self.bn2 = nn.BatchNorm2d(planes, track_running_stats=True)
         self.conv3 = nn.Conv2d(planes, self.expansion*planes, kernel_size=1, bias=False)
-        self.bn3 = nn.BatchNorm2d(self.expansion*planes, track_running_stats=False)
+        self.bn3 = nn.BatchNorm2d(self.expansion*planes, track_running_stats=True)
 
         self.shortcut = nn.Sequential()
         if stride != 1 or in_planes != self.expansion*planes:
             self.shortcut = nn.Sequential(
                 nn.Conv2d(in_planes, self.expansion*planes, kernel_size=1, stride=stride, bias=False),
-                nn.BatchNorm2d(self.expansion*planes, track_running_stats=False)
+                nn.BatchNorm2d(self.expansion*planes, track_running_stats=True)
             )
 
     def forward(self, x):
